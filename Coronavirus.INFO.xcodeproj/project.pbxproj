@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3966BF2449DD12007447E0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3966BE2449DD12007447E0 /* Utils.swift */; };
+		CE3966C12449FD62007447E0 /* PopulationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3966C02449FD62007447E0 /* PopulationModel.swift */; };
 		CE3CCA45243EFFFC0099EC36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA44243EFFFC0099EC36 /* AppDelegate.swift */; };
 		CE3CCA47243EFFFC0099EC36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA46243EFFFC0099EC36 /* SceneDelegate.swift */; };
 		CE3CCA49243EFFFC0099EC36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA48243EFFFC0099EC36 /* ContentView.swift */; };
 		CE3CCA4B243EFFFE0099EC36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3CCA4A243EFFFE0099EC36 /* Assets.xcassets */; };
 		CE3CCA4E243EFFFE0099EC36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3CCA4D243EFFFE0099EC36 /* Preview Assets.xcassets */; };
 		CE3CCA51243EFFFE0099EC36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE3CCA4F243EFFFE0099EC36 /* LaunchScreen.storyboard */; };
+		CE3CCA59243F00F10099EC36 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA58243F00F10099EC36 /* Country.swift */; };
+		CE3CCA5B243F01370099EC36 /* CountryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA5A243F01370099EC36 /* CountryDetail.swift */; };
+		CE3CCA5E243F03460099EC36 /* Country.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3CCA5D243F03460099EC36 /* Country.xcassets */; };
+		CE3CCA62243F09630099EC36 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA61243F09630099EC36 /* Engine.swift */; };
+		CE50FD14244F1BA80095958C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50FD13244F1BA80095958C /* Extensions.swift */; };
+		CE97EB51244484020097199B /* CountriesDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97EB50244484020097199B /* CountriesDao.swift */; };
+		CEA7A8472445C38700AA1B03 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7A8462445C38700AA1B03 /* ProgressBarView.swift */; };
+		CED181FC24487E3100ED33D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED181FB24487E3100ED33D2 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE3966BE2449DD12007447E0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CE3966C02449FD62007447E0 /* PopulationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationModel.swift; sourceTree = "<group>"; };
 		CE3CCA41243EFFFC0099EC36 /* Coronavirus.INFO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coronavirus.INFO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3CCA44243EFFFC0099EC36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE3CCA46243EFFFC0099EC36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +36,14 @@
 		CE3CCA4D243EFFFE0099EC36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE3CCA50243EFFFE0099EC36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE3CCA52243EFFFE0099EC36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE3CCA58243F00F10099EC36 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		CE3CCA5A243F01370099EC36 /* CountryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetail.swift; sourceTree = "<group>"; };
+		CE3CCA5D243F03460099EC36 /* Country.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Country.xcassets; sourceTree = "<group>"; };
+		CE3CCA61243F09630099EC36 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		CE50FD13244F1BA80095958C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CE97EB50244484020097199B /* CountriesDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDao.swift; sourceTree = "<group>"; };
+		CEA7A8462445C38700AA1B03 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		CED181FB24487E3100ED33D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE3966BD2449DCEB007447E0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CE3966BE2449DD12007447E0 /* Utils.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		CE3CCA38243EFFFC0099EC36 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +84,15 @@
 		CE3CCA43243EFFFC0099EC36 /* Coronavirus.INFO */ = {
 			isa = PBXGroup;
 			children = (
+				CE50FD16244F1CBC0095958C /* Extension */,
+				CE3966BD2449DCEB007447E0 /* Util */,
+				CE97EB562444AA310097199B /* Country */,
+				CE97EB552444AA260097199B /* View */,
+				CE97EB522444A1980097199B /* Data */,
+				CE3CCA5F243F08800099EC36 /* Model */,
+				CE3CCA5D243F03460099EC36 /* Country.xcassets */,
 				CE3CCA44243EFFFC0099EC36 /* AppDelegate.swift */,
 				CE3CCA46243EFFFC0099EC36 /* SceneDelegate.swift */,
-				CE3CCA48243EFFFC0099EC36 /* ContentView.swift */,
 				CE3CCA4A243EFFFE0099EC36 /* Assets.xcassets */,
 				CE3CCA4F243EFFFE0099EC36 /* LaunchScreen.storyboard */,
 				CE3CCA52243EFFFE0099EC36 /* Info.plist */,
@@ -73,6 +107,50 @@
 				CE3CCA4D243EFFFE0099EC36 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CE3CCA5F243F08800099EC36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE3CCA61243F09630099EC36 /* Engine.swift */,
+				CE3966C02449FD62007447E0 /* PopulationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE50FD16244F1CBC0095958C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CE50FD13244F1BA80095958C /* Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		CE97EB522444A1980097199B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CE97EB50244484020097199B /* CountriesDao.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CE97EB552444AA260097199B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE3CCA48243EFFFC0099EC36 /* ContentView.swift */,
+				CEA7A8462445C38700AA1B03 /* ProgressBarView.swift */,
+				CE3CCA5A243F01370099EC36 /* CountryDetail.swift */,
+				CED181FB24487E3100ED33D2 /* LoadingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE97EB562444AA310097199B /* Country */ = {
+			isa = PBXGroup;
+			children = (
+				CE3CCA58243F00F10099EC36 /* Country.swift */,
+			);
+			path = Country;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3CCA5E243F03460099EC36 /* Country.xcassets in Resources */,
 				CE3CCA51243EFFFE0099EC36 /* LaunchScreen.storyboard in Resources */,
 				CE3CCA4E243EFFFE0099EC36 /* Preview Assets.xcassets in Resources */,
 				CE3CCA4B243EFFFE0099EC36 /* Assets.xcassets in Resources */,
@@ -147,7 +226,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3CCA45243EFFFC0099EC36 /* AppDelegate.swift in Sources */,
+				CE3CCA62243F09630099EC36 /* Engine.swift in Sources */,
+				CE3CCA5B243F01370099EC36 /* CountryDetail.swift in Sources */,
+				CED181FC24487E3100ED33D2 /* LoadingView.swift in Sources */,
 				CE3CCA47243EFFFC0099EC36 /* SceneDelegate.swift in Sources */,
+				CE3966BF2449DD12007447E0 /* Utils.swift in Sources */,
+				CE97EB51244484020097199B /* CountriesDao.swift in Sources */,
+				CE50FD14244F1BA80095958C /* Extensions.swift in Sources */,
+				CE3966C12449FD62007447E0 /* PopulationModel.swift in Sources */,
+				CEA7A8472445C38700AA1B03 /* ProgressBarView.swift in Sources */,
+				CE3CCA59243F00F10099EC36 /* Country.swift in Sources */,
 				CE3CCA49243EFFFC0099EC36 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
