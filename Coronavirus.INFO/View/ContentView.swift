@@ -54,8 +54,8 @@ struct ContentView: View {
                 .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
                 List(self.countries.filter({c in c.name.capitalized.hasPrefix(self.searchText) || self.searchText == ""})) { country in
                         CountryCell(country: country)
-                }.navigationBarTitle(Text("Countries statistic:"))
-                .navigationBarTitle(Text("Search"))
+                }
+                .navigationBarTitle(Text("Coronavirus statistic:"))
                 .resignKeyboardOnDragGesture()
             }
         }

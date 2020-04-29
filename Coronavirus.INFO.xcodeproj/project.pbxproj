@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE12A5BE2450275D00EC7655 /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12A5BD2450275D00EC7655 /* TestingView.swift */; };
 		CE3966BF2449DD12007447E0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3966BE2449DD12007447E0 /* Utils.swift */; };
 		CE3966C12449FD62007447E0 /* PopulationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3966C02449FD62007447E0 /* PopulationModel.swift */; };
 		CE3CCA45243EFFFC0099EC36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCA44243EFFFC0099EC36 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE12A5BD2450275D00EC7655 /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
 		CE3966BE2449DD12007447E0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CE3966C02449FD62007447E0 /* PopulationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationModel.swift; sourceTree = "<group>"; };
 		CE3CCA41243EFFFC0099EC36 /* Coronavirus.INFO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coronavirus.INFO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 				CEA7A8462445C38700AA1B03 /* ProgressBarView.swift */,
 				CE3CCA5A243F01370099EC36 /* CountryDetail.swift */,
 				CED181FB24487E3100ED33D2 /* LoadingView.swift */,
+				CE12A5BD2450275D00EC7655 /* TestingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				CE3CCA5B243F01370099EC36 /* CountryDetail.swift in Sources */,
 				CED181FC24487E3100ED33D2 /* LoadingView.swift in Sources */,
 				CE3CCA47243EFFFC0099EC36 /* SceneDelegate.swift in Sources */,
+				CE12A5BE2450275D00EC7655 /* TestingView.swift in Sources */,
 				CE3966BF2449DD12007447E0 /* Utils.swift in Sources */,
 				CE97EB51244484020097199B /* CountriesDao.swift in Sources */,
 				CE50FD14244F1BA80095958C /* Extensions.swift in Sources */,

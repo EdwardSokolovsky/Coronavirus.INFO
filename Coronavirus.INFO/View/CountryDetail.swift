@@ -1,5 +1,5 @@
 //
-//  TutorDetail.swift
+//  CountryDetail.swift
 //  Coronavirus.INFO
 //
 //  Created by Edward on 09.04.2020.
@@ -19,14 +19,19 @@ struct CountryDetail : View {
     @State var populationPercent: Float = 0.0
     @State var lastUpdate: String = ""
     @State var isShowingLoading: Bool = false
+
+    @EnvironmentObject var countriesDao: CountriesDao
      
     var name: String
     let utils = Utils()
     let mainBackgroundColor = Color(red: 200, green: 17, blue: 255)
-    init(countryName:String) {name = countryName}
+    init(countryName:String) {
+        name = countryName
+    }
 
     private func loadData()->Void{
        self.isShowingLoading.toggle()
+        
         let data = getCountryData()
         self.cases = data[name]!.0
         self.deaths = data[name]!.1
@@ -36,6 +41,17 @@ struct CountryDetail : View {
         self.populationValue = PopulationModel.init().getPopulationData(countryName:name)
         self.populationPercent = calculatePopulationCasesPercent(casesValue:cases, populationValue:populationValue)
         self.lastUpdate = "Last update: " + utils.getCurrentDateTime()
+        countriesDao.saveData(
+            countryName: name,
+            cases: self.cases,
+            deaths: self.deaths,
+            recovered: self.recovered,
+            deathsPercent: self.deathsPct,
+            recoveredPercent: self.recoveredPct,
+            populationValue: self.populationValue,
+            populationPercent: self.$populationPercent,
+            lastUpdate: self.lastUpdate
+        )
         self.isShowingLoading.toggle()
     }
     private func getCountryData () -> [String:(String,String,String)]{
@@ -74,28 +90,31 @@ struct CountryDetail : View {
                     .cornerRadius(10.0)
                     .padding(6)
                     Divider()
-                    Text("Cases: \(self.cases)")
+//                    Text("Cases: \(self.cases)")
+                    Text("Cases: \(self.countriesDao.savedData[self.name]?.0 ?? self.cases)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.orange)
                     Divider()
-                    Text("Deaths: \(self.deaths) (\(self.deathsPct)%)")
+                    Text("Deaths: \(self.countriesDao.savedData[self.name]?.1 ?? self.deaths) (\(self.countriesDao.savedData[self.name]?.3 ?? self.deathsPct)%)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.red)
                     Divider()
-                    Text("Recovered: \(self.recovered) (\(self.recoveredPct)%)")
+                    Text("Recovered: \(self.countriesDao.savedData[self.name]?.2 ?? self.recovered) (\(self.countriesDao.savedData[self.name]?.4 ?? self.recoveredPct)%)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.yellow)
                     Divider()
-                    Text("Population: \(self.populationValue)")
+                    Text("Population: \(self.countriesDao.savedData[self.name]?.5 ?? self.populationValue)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.green)
                     Divider()
-                }.navigationBarTitle(Text(self.name), displayMode: .inline)
-                    ProgressBarView(progressValue: self.$populationPercent)
+                }.navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
+                    ProgressBarView(progressValue: self.countriesDao.savedData[self.name]?.6 ?? self.$populationPercent)
+                        
+                        
                         .padding(20)
                  Button(action: {
                  self.loadData()
@@ -106,7 +125,7 @@ struct CountryDetail : View {
                     .foregroundColor(.white)
                     .background(Color.red)
                     .cornerRadius(8)
-                  Text("\(self.lastUpdate)")
+                  Text("\(self.countriesDao.savedData[self.name]?.7 ?? self.lastUpdate)")
                     .font(.callout)
                     .padding(10)
                     .font(.system(size: 15))

@@ -32,7 +32,6 @@ struct LoadingView<Content>: View where Content: View {
 //                        .foregroundColor(.black)
 //                        .opacity(0.8)
                     }
-//                    ActivityIndicator(isAnimating: .constant(true), style: .large)
                     ActivityIndicator(isAnimating: self.$isShowing, style: .large)
                 }
                 .frame(width: geometry.size.width / 1.5,

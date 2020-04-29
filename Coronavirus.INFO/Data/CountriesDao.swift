@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CountriesDao: ObservableObject{
-    
+ 
+ @Published var savedData: [String:(String, String, String, String, String, String, Binding<Float>, String)] = [:]
  @Published var countriesArray = [
                 Country(name: "afghanistan"),
                 Country(name: "albania"),
@@ -221,6 +223,25 @@ class CountriesDao: ObservableObject{
                 Country(name: "zambia"),
                 Country(name: "zimbabwe"),
             ]
+    
+    func saveData(countryName:String,
+                  cases:String,
+                  deaths:String,
+                  recovered:String,
+                  deathsPercent:String,
+                  recoveredPercent:String,
+                  populationValue:String,
+                  populationPercent:Binding<Float>,
+                  lastUpdate:String) -> Void {
+        self.savedData[countryName] = (cases,
+                                       deaths,
+                                       recovered,
+                                       deathsPercent,
+                                       recoveredPercent,
+                                       populationValue,
+                                       populationPercent,
+                                       lastUpdate)
+    }
     
     #if DEBUG
     let testData = [

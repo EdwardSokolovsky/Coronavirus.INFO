@@ -1,5 +1,5 @@
 //
-//  Totor.swift
+//  Country.swift
 //  Coronavirus.INFO
 //
 //  Created by Edward on 09.04.2020.

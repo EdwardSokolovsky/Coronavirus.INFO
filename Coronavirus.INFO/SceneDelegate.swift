@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            window.rootViewController = UIHostingController(rootView: contentView)
             
             
-            let engine = Engine()
-            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(engine))
+            let countriesDao = CountriesDao()
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(countriesDao))
             
             
             
