@@ -68,11 +68,16 @@ struct CountryDetail : View {
         let c = casesValue.replacingOccurrences(of: ",",with: "")
         return (Float(c)! / Float(p)! * 100.0)
     }
+    
+    func getCountryImage(name: String) -> Image {
+       let uiImage =  (UIImage(named: name) ?? UIImage(named: "Default.png"))!
+       return Image(uiImage: uiImage)
+    }
 
     var body: some View {
-        LoadingView (isShowing: $isShowingLoading) {
+            VStack {
                 VStack {
-                    Image(self.name.capitalized)
+                    self.getCountryImage(name: self.name.capitalized)
                         .cornerRadius(10.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -114,9 +119,10 @@ struct CountryDetail : View {
                     Divider()
                 }.navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
                     ProgressBarView(progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent)
-                        
-                        
                         .padding(20)
+                 Text("*percent population infected")
+                    .foregroundColor(Color.orange)
+                    .padding()
                  Button(action: {
                  self.loadData()
                  }) {
@@ -132,11 +138,16 @@ struct CountryDetail : View {
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
                 }
+            .padding(.vertical, 100)
             }
-        .background(Color(red: 0.81, green: 1.0, blue: 0.98))
+//        .background(Color(red: 0.81, green: 1.0, blue: 0.98))
 //        .background(Color.red)
 //        .opacity(0.75)
+//        .foregroundColor(.secondary)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            .background(Color(.systemBackground))
     }
+    
 }
 
 #if DEBUG
@@ -154,13 +165,15 @@ struct CountryDetailDebug : View {
     @State var isShowingLoading: Bool = false
 
     var body: some View {
-        LoadingView (isShowing: $isShowingLoading) {
+//        LoadingView (isShowing: $isShowingLoading) {
                 VStack {
+                     VStack {
                     Image(self.name.capitalized)
                         .cornerRadius(10.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.black, lineWidth: 1.5)
+                        
                     )
                 VStack {
                     ZStack {
@@ -222,10 +235,13 @@ struct CountryDetailDebug : View {
                     .font(.system(size: 15))
                     .foregroundColor(.black)
                 }
+                     .padding(.vertical, 100)
             }
+//       }
             .foregroundColor(.blue)
-        .background(Color(red: 1.0, green: 1.0, blue: 1.0))
-        .opacity(0.75)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color(red: 0.4, green: 0.4, blue: 0.8))
+//                    .background(Color(.systemBackground))
     }
 
 }
