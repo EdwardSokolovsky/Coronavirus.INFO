@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ProgressBarView: View {
     @Binding var progressValue: Float
+    @Binding var progressColorValue: Color
+    @Binding var generalColorValue: Color
     
     var body: some View {
 //        ZStack {
@@ -17,7 +19,11 @@ struct ProgressBarView: View {
 //                .opacity(0.0)
 //                .edgesIgnoringSafeArea(.all)
             VStack {
-                ProgressBar(progress: .constant(progressValue))
+                ProgressBar(
+                    progress: .constant(progressValue),
+                    progressColor: .constant(progressColorValue),
+                    generalColor: .constant(generalColorValue)
+                    )
                     .frame(width: 150.0, height: 150.0)
 //                    .padding(20.0)
                 
@@ -48,32 +54,39 @@ struct ProgressBarView: View {
 
 struct ProgressBar: View {
     @Binding var progress: Float
+    @Binding var progressColor: Color
+    @Binding var generalColor: Color
     
     var body: some View {
         ZStack {
             Circle()
                 .stroke(lineWidth: 20.0)
                 .opacity(0.85)
-                .foregroundColor(Color.green)
+                .foregroundColor(self.generalColor)
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(self.progress/100, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
 //                .opacity(0.75)
-                .foregroundColor(Color.red)
+                .foregroundColor(progressColor)
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear)
 //            Text(String(format: "%.0f %%", min(self.progress, 1.0)*100.0))
                 Text(String(format: "%.2f %%", min(self.progress, 1.0)))
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(Color.red)
+                    .foregroundColor(self.progressColor)
                 .opacity(0.88)
         }
     }
 }
 
-//struct LoadingBarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProgressBarView(progressValue:0.5)
-//    }
-//}
+struct LoadingBarView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        ProgressBarView(
+            progressValue: .constant(Float(0.5)),
+            progressColorValue: .constant(Color.orange),
+            generalColorValue: .constant(Color.green)
+            )
+    }
+}

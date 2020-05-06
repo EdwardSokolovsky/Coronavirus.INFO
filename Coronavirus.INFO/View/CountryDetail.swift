@@ -19,6 +19,8 @@ struct CountryDetail : View {
     @State var populationPercent: Float = 0.0
     @State var lastUpdate: String = ""
     @State var isShowingLoading: Bool = false
+    @State var casesColor: Color = Color.orange
+    @State var populationColor: Color = Color.green
 
     @EnvironmentObject var countriesDao: CountriesDao
      
@@ -96,7 +98,7 @@ struct CountryDetail : View {
                     Text("Cases: \(self.countriesDao.savedData[self.name]?.cases ?? self.cases)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color.orange)
+                        .foregroundColor(casesColor)
                     Divider()
                     Text("Deaths: \(self.countriesDao.savedData[self.name]?.deaths ?? self.deaths) (\(self.countriesDao.savedData[self.name]?.deathsPercent ?? self.deathsPct)%)")
                         .font(.headline)
@@ -111,14 +113,18 @@ struct CountryDetail : View {
                     Text("Population: \(self.countriesDao.savedData[self.name]?.populationValue ?? self.populationValue)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color.green)
+                        .foregroundColor(populationColor)
                     Divider()
                 }
                 .navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
-                ProgressBarView(progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent)
+                    ProgressBarView(
+                        progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent,
+                        progressColorValue: self.$casesColor,
+                        generalColorValue: self.$populationColor
+                        )
                 .padding(.vertical, 20)
                 Text("*percent population infected")
-                    .foregroundColor(Color.orange)
+                    .foregroundColor(casesColor)
                     .padding(.bottom, 10)
                 Button(action: {
                     self.loadData()
@@ -156,6 +162,8 @@ struct CountryDetailDebug : View {
     @State var populationPercent:Float = 0.0
     @State var lastUpdate: String = ""
     @State var isShowingLoading: Bool = false
+    @State var casesColor: Color = Color.orange
+    @State var populationColor: Color = Color.green
 
     var body: some View {
 //        LoadingView (isShowing: $isShowingLoading) {
@@ -201,7 +209,11 @@ struct CountryDetailDebug : View {
                         .foregroundColor(Color.green)
                     Divider()
                 }.navigationBarTitle(Text(self.name), displayMode: .inline)
-                    ProgressBarView(progressValue: self.$populationPercent)
+                        ProgressBarView(
+                            progressValue: self.$populationPercent,
+                            progressColorValue: self.$casesColor,
+                            generalColorValue: self.$populationColor
+                        )
                     .padding(10)
                     Text("*percent population infected")
                     .foregroundColor(.black)
@@ -240,8 +252,9 @@ struct CountryDetailDebug : View {
 }
     
 struct CountryDetailDebug_Previews : PreviewProvider {
+    static var testCountryName: String = "norway"
     static var previews: some View {
-        CountryDetailDebug(countryName:"argentina")
+        CountryDetailDebug(countryName: testCountryName)
     }
 }
 #endif
