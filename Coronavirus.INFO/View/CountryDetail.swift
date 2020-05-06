@@ -78,25 +78,21 @@ struct CountryDetail : View {
             VStack {
                 VStack {
                     self.getCountryImage(name: self.name.capitalized)
-                        .cornerRadius(10.0)
+                    .cornerRadius(10.0)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1.5)
+                    RoundedRectangle(cornerRadius: 10)
+//                    .stroke(Color.black, lineWidth: 1.5)
+                        .stroke(Color.primary, lineWidth: 1.5)
+                        .opacity(0.15)
                     )
                 VStack {
                     ZStack {
-                    Text("\(self.name.capitalized):")
+                        Text("\(self.name.capitalized):")
                         .font(.largeTitle)
                         .font(.callout)
                         .padding(6)
-                        .foregroundColor(.white)
-                    }.background(Color.black)
-                    .opacity(0.8)
-                    .cornerRadius(10.0)
-                    .padding(6)
+                    }
                     Divider()
-//                    Text("Cases: \(self.cases)")
-//                    Text("Cases: \(self.countriesDao.savedData[self.name]?.0 ?? self.cases)")
                     Text("Cases: \(self.countriesDao.savedData[self.name]?.cases ?? self.cases)")
                         .font(.headline)
                         .multilineTextAlignment(.center)
@@ -117,33 +113,30 @@ struct CountryDetail : View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.green)
                     Divider()
-                }.navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
-                    ProgressBarView(progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent)
-                        .padding(20)
-                 Text("*percent population infected")
+                }
+                .navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
+                ProgressBarView(progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent)
+                .padding(.vertical, 20)
+                Text("*percent population infected")
                     .foregroundColor(Color.orange)
-                    .padding()
-                 Button(action: {
-                 self.loadData()
+                    .padding(.bottom, 10)
+                Button(action: {
+                    self.loadData()
                  }) {
-                 Text("Update data")
-                   }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(8)
-                  Text("\(self.countriesDao.savedData[self.name]?.7 ?? self.lastUpdate)")
+                    Text("Update data")
+                    }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.red)
+                        .cornerRadius(8)
+                Text("\(self.countriesDao.savedData[self.name]?.7 ?? self.lastUpdate)")
                     .font(.callout)
                     .padding(10)
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
                 }
-            .padding(.vertical, 100)
+                .padding(.vertical, 45)
             }
-//        .background(Color(red: 0.81, green: 1.0, blue: 0.98))
-//        .background(Color.red)
-//        .opacity(0.75)
-//        .foregroundColor(.secondary)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .background(Color(.systemBackground))
     }
@@ -168,13 +161,13 @@ struct CountryDetailDebug : View {
 //        LoadingView (isShowing: $isShowingLoading) {
                 VStack {
                      VStack {
-                    Image(self.name.capitalized)
+//                        Image(self.name.capitalized)
+                        Image("Default")
                         .cornerRadius(10.0)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1.5)
-                        
-                    )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black, lineWidth: 1.5)
+                                )
                 VStack {
                     ZStack {
                     Text("\(self.name.capitalized):")
@@ -212,7 +205,7 @@ struct CountryDetailDebug : View {
                     .padding(10)
                     Text("*percent population infected")
                     .foregroundColor(.black)
-                    .padding(10)
+                    .padding(.vertical, 20)
                  Button(action: {
                     self.cases = "100"
                     self.deaths = "10"
@@ -225,17 +218,17 @@ struct CountryDetailDebug : View {
                  }) {
                  Text("Update data")
                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(8)
-                  Text("\(self.lastUpdate)")
-                    .font(.callout)
-                    .padding(10)
-                    .font(.system(size: 15))
-                    .foregroundColor(.black)
-                }
-                     .padding(.vertical, 100)
+                           .padding()
+                           .foregroundColor(.white)
+                           .background(Color.red)
+                           .cornerRadius(8)
+                 Text("\(self.lastUpdate)")
+                           .font(.callout)
+                           .padding(10)
+                           .font(.system(size: 15))
+                           .foregroundColor(.gray)
+                   }
+                   .padding(.vertical, 45)
             }
 //       }
             .foregroundColor(.blue)
@@ -248,7 +241,7 @@ struct CountryDetailDebug : View {
     
 struct CountryDetailDebug_Previews : PreviewProvider {
     static var previews: some View {
-        CountryDetailDebug(countryName:"central-african-republic")
+        CountryDetailDebug(countryName:"argentina")
     }
 }
 #endif
