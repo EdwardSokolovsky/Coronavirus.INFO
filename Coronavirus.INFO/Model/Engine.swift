@@ -11,13 +11,9 @@ import UIKit
 
 class Engine: ObservableObject {
     
-//    @Published var loading:Bool
-//    static let shared = Engine()
-    
     init() {
-//        loading = true
     }
-
+    
     let globalCountriesLink:String = "https:www.worldometers.info/coronavirus/#countries"
     let mainPageTextSeparatorFrom:String = "mt_a\" href=\""
     let mainPageTextSeparatorTo:String = "\">"
@@ -50,7 +46,7 @@ class Engine: ObservableObject {
         var countryesAndLinks = [String:String]()
         //array of links to specific country:
         let countriesLinks = countriesHtmlStringContent.slices(from: mainPageTextSeparatorFrom, to: mainPageTextSeparatorTo)
-
+        
         countriesLinks.forEach({countryLink in
             let key = countryLink.replacingOccurrences(of: "country/", with: "").replacingOccurrences(of: "/", with: "")
             countryesAndLinks[key] = String(countryLink)
@@ -66,11 +62,11 @@ class Engine: ObservableObject {
         countriesPageMainTextSeparatorTo:String
     ) -> [String:(String,String,String)]{
         let specificCountryLink:String = globalCountriesLink.replacingOccurrences(of: "#countries", with: "\(countryesAndLinks[spicificCountryName]!)")
-
+        
         let testingUrl = URL(string: specificCountryLink)!
         let contentOfHtml = try! String(contentsOf: testingUrl, encoding: .utf8)
         let htmlUnspacedText =  contentOfHtml.filter { !$0.isNewline && !$0.isWhitespace }
-
+        
         let countryPageMainText = htmlUnspacedText.slices(from: countriesPageMainTextSeparatorFrom, to: countriesPageMainTextSeparatorTo)
         
         let cases = String(countryPageMainText[0]).slices(from: "<h1>CoronavirusCases:</h1>", to: "</span>")
@@ -80,7 +76,7 @@ class Engine: ObservableObject {
         let deathsFiltered = String(deaths[0].split(separator: ">").last!)
         let recoveredFiltered = String(recovered[0].split(separator: ">").last!)
         return [spicificCountryName:(casesFiltered, deathsFiltered, recoveredFiltered)]
-    
+        
     }
     
     

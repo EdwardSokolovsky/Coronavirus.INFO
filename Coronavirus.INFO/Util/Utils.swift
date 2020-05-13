@@ -16,6 +16,6 @@ class Utils {
         formatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
         return formatter.string(from: date)
     }
-
+    
     
 }

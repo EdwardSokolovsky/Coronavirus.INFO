@@ -8,8 +8,13 @@
 
 import SwiftUI
 
-struct Country: Identifiable {
+struct Country: Identifiable, Equatable {
     var id = UUID()
     var name: String
     var imageName: String { return name }
+    var reaction: String
+    
+    static func ==(lhs: Country, rhs: Country) -> Bool {
+        return lhs.name == rhs.name
+    }
 }

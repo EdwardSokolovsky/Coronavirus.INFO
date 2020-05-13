@@ -19,7 +19,7 @@ struct TestingView : View {
             VStack {
                 Toggle(isOn: $tuggle) {
                     Text("Polzunok")
-                    .offset(x: 100.0, y: 0.0)
+                        .offset(x: 100.0, y: 0.0)
                 }
                 .padding(50)
                 Image(systemName: "play.rectangle.fill")
@@ -40,7 +40,7 @@ struct TestingView : View {
                 }
             }) {
                 Text("Change tuggle status")
-                .padding()
+                    .padding()
             }
         }
     }
@@ -54,11 +54,11 @@ struct TestingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TestingView()
-              .environment(\.colorScheme, .light)
-
+                .environment(\.colorScheme, .light)
+            
             TestingView()
-              .environment(\.colorScheme, .dark)
+                .environment(\.colorScheme, .dark)
         }
     }
-
+    
 }

@@ -21,18 +21,18 @@ struct CountryDetail : View {
     @State var isShowingLoading: Bool = false
     @State var casesColor: Color = Color.orange
     @State var populationColor: Color = Color.green
-
+    
     @EnvironmentObject var countriesDao: CountriesDao
-     
+    
     var name: String
     let utils = Utils()
     let mainBackgroundColor = Color(red: 200, green: 17, blue: 255)
     init(countryName:String) {
         name = countryName
     }
-
+    
     private func loadData()->Void{
-       self.isShowingLoading.toggle()
+        self.isShowingLoading.toggle()
         
         let data = getCountryData()
         self.cases = data[name]!.0
@@ -72,27 +72,27 @@ struct CountryDetail : View {
     }
     
     func getCountryImage(name: String) -> Image {
-       let uiImage =  (UIImage(named: name) ?? UIImage(named: "Default.png"))!
-       return Image(uiImage: uiImage)
+        let uiImage =  (UIImage(named: name) ?? UIImage(named: "Default.png"))!
+        return Image(uiImage: uiImage)
     }
-
+    
     var body: some View {
+        VStack {
             VStack {
-                VStack {
-                    self.getCountryImage(name: self.name.capitalized)
+                self.getCountryImage(name: self.name.capitalized)
                     .cornerRadius(10.0)
                     .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color.black, lineWidth: 1.5)
-                        .stroke(Color.primary, lineWidth: 1.5)
-                        .opacity(0.15)
-                    )
+                        RoundedRectangle(cornerRadius: 10)
+                            //                    .stroke(Color.black, lineWidth: 1.5)
+                            .stroke(Color.primary, lineWidth: 1.5)
+                            .opacity(0.15)
+                )
                 VStack {
                     ZStack {
                         Text("\(self.name.capitalized):")
-                        .font(.largeTitle)
-                        .font(.callout)
-                        .padding(6)
+                            .font(.largeTitle)
+                            .font(.callout)
+                            .padding(6)
                     }
                     Divider()
                     Text("Cases: \(self.countriesDao.savedData[self.name]?.cases ?? self.cases)")
@@ -117,144 +117,51 @@ struct CountryDetail : View {
                     Divider()
                 }
                 .navigationBarTitle(Text(self.name.capitalized), displayMode: .inline)
-                    ProgressBarView(
-                        progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent,
-                        progressColorValue: self.$casesColor,
-                        generalColorValue: self.$populationColor
-                        )
-                .padding(.vertical, 20)
+                ProgressBarView(
+                    progressValue: self.countriesDao.savedData[self.name]?.populationPercent ?? self.$populationPercent,
+                    progressColorValue: self.$casesColor,
+                    generalColorValue: self.$populationColor
+                )
+                    .padding(.vertical, 20)
                 Text("*percent population infected")
                     .foregroundColor(casesColor)
                     .padding(.bottom, 10)
                 Button(action: {
                     self.loadData()
-                 }) {
+                }) {
                     Text("Update data")
-                    }
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.red)
-                        .cornerRadius(8)
+                }
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.red)
+                .cornerRadius(8)
                 Text("\(self.countriesDao.savedData[self.name]?.7 ?? self.lastUpdate)")
                     .font(.callout)
                     .padding(10)
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
-                }
-                .padding(.vertical, 45)
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-            .background(Color(.systemBackground))
+            .padding(.vertical, 45)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color(.systemBackground))
     }
     
 }
 
 #if DEBUG
-struct CountryDetailDebug : View {
-    var name: String
-    init(countryName:String) {name = countryName}
-    @State var cases:String = "?"
-    @State var deaths:String = "?"
-    @State var recovered:String = "?"
-    @State var deathsPct:String = "?"
-    @State var recoveredPct:String = "?"
-    @State var populationValue:String = "?"
-    @State var populationPercent:Float = 0.0
-    @State var lastUpdate: String = ""
-    @State var isShowingLoading: Bool = false
-    @State var casesColor: Color = Color.orange
-    @State var populationColor: Color = Color.green
-
-    var body: some View {
-//        LoadingView (isShowing: $isShowingLoading) {
-                VStack {
-                     VStack {
-//                        Image(self.name.capitalized)
-                        Image("Default")
-                        .cornerRadius(10.0)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.black, lineWidth: 1.5)
-                                )
-                VStack {
-                    ZStack {
-                    Text("\(self.name.capitalized):")
-                        .font(.largeTitle)
-                        .font(.callout)
-                        .padding(6)
-                        .foregroundColor(.white)
-                    }.background(Color.black)
-                    .opacity(0.8)
-                    .cornerRadius(10.0)
-                    .padding(5)
-                    Divider()
-                    Text("Cases: \(self.cases)")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.orange)
-                    Divider()
-                    Text("Deaths: \(self.deaths) (\(self.deathsPct)%)")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.red)
-                    Divider()
-                    Text("Recovered: \(self.recovered) (\(self.recoveredPct)%)")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.yellow)
-                    Divider()
-                    Text("Population: \(self.populationValue)")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.green)
-                    Divider()
-                }.navigationBarTitle(Text(self.name), displayMode: .inline)
-                        ProgressBarView(
-                            progressValue: self.$populationPercent,
-                            progressColorValue: self.$casesColor,
-                            generalColorValue: self.$populationColor
-                        )
-                    .padding(10)
-                    Text("*percent population infected")
-                    .foregroundColor(.black)
-                    .padding(.vertical, 20)
-                 Button(action: {
-                    self.cases = "100"
-                    self.deaths = "10"
-                    self.recovered = "70"
-                    self.deathsPct = "10"
-                    self.recoveredPct = "70"
-                    self.populationValue = "100000"
-                    self.populationPercent = 0.5
-                    self.lastUpdate = "Last update 20.20.20 15:00:00"
-                 }) {
-                 Text("Update data")
-                   }
-                           .padding()
-                           .foregroundColor(.white)
-                           .background(Color.red)
-                           .cornerRadius(8)
-                 Text("\(self.lastUpdate)")
-                           .font(.callout)
-                           .padding(10)
-                           .font(.system(size: 15))
-                           .foregroundColor(.gray)
-                   }
-                   .padding(.vertical, 45)
-            }
-//       }
-            .foregroundColor(.blue)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color(red: 0.4, green: 0.4, blue: 0.8))
-//                    .background(Color(.systemBackground))
-    }
-
-}
-    
-struct CountryDetailDebug_Previews : PreviewProvider {
+struct CountryDetail_Previews : PreviewProvider {
     static var testCountryName: String = "norway"
     static var previews: some View {
-        CountryDetailDebug(countryName: testCountryName)
+        Group {
+        CountryDetail(countryName: testCountryName)
+            .environment(\.colorScheme, .light)
+            .environmentObject(CountriesDao())
+            
+        CountryDetail(countryName: testCountryName)
+            .environment(\.colorScheme, .dark)
+            .environmentObject(CountriesDao())
+        }
     }
 }
 #endif
