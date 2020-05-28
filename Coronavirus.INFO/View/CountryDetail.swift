@@ -13,6 +13,8 @@ struct CountryDetail : View {
     @State var cases:String = "?"
     @State var deaths:String = "?"
     @State var recovered:String = "?"
+    @State var newCases:String = "?"
+    @State var newDeaths:String = "?"
     @State var deathsPct:String = "?"
     @State var recoveredPct:String = "?"
     @State var populationValue:String = "?"
@@ -38,6 +40,8 @@ struct CountryDetail : View {
         self.cases = data[name]!.0
         self.deaths = data[name]!.1
         self.recovered = data[name]!.2
+        self.newCases = data[name]!.3
+        self.newDeaths = data[name]!.4
         self.deathsPct = getParameterPercent(cases: cases, value: deaths)
         self.recoveredPct = getParameterPercent(cases: cases, value: recovered)
         self.populationValue = PopulationModel.init().getPopulationData(countryName:name)
@@ -48,6 +52,8 @@ struct CountryDetail : View {
             cases: self.cases,
             deaths: self.deaths,
             recovered: self.recovered,
+            newCases: self.newCases,
+            newDeaths: self.newDeaths,
             deathsPercent: self.deathsPct,
             recoveredPercent: self.recoveredPct,
             populationValue: self.populationValue,
@@ -56,7 +62,7 @@ struct CountryDetail : View {
         )
         self.isShowingLoading.toggle()
     }
-    private func getCountryData () -> [String:(String,String,String)]{
+    private func getCountryData () -> [String:(String,String,String, String, String)]{
         return Engine.init().getCasesDeathsRecoveredData(countryName:name)
     }
     private func getParameterPercent(cases:String, value:String)->String{
@@ -95,12 +101,12 @@ struct CountryDetail : View {
                             .padding(6)
                     }
                     Divider()
-                    Text("Cases: \(self.countriesDao.savedData[self.name]?.cases ?? self.cases)")
+                    Text("Cases: \(self.countriesDao.savedData[self.name]?.cases ?? self.cases)" + " + \(self.countriesDao.savedData[self.name]?.newCases ?? self.newCases) new")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(casesColor)
                     Divider()
-                    Text("Deaths: \(self.countriesDao.savedData[self.name]?.deaths ?? self.deaths) (\(self.countriesDao.savedData[self.name]?.deathsPercent ?? self.deathsPct)%)")
+                    Text("Deaths: \(self.countriesDao.savedData[self.name]?.deaths ?? self.deaths) (\(self.countriesDao.savedData[self.name]?.deathsPercent ?? self.deathsPct)%)" + " + \(self.countriesDao.savedData[self.name]?.newDeaths ?? self.newDeaths) new")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color.red)
@@ -135,7 +141,7 @@ struct CountryDetail : View {
                 .foregroundColor(.white)
                 .background(Color.red)
                 .cornerRadius(8)
-                Text("\(self.countriesDao.savedData[self.name]?.7 ?? self.lastUpdate)")
+                Text("\(self.countriesDao.savedData[self.name]?.9 ?? self.lastUpdate)")
                     .font(.callout)
                     .padding(10)
                     .font(.system(size: 15))

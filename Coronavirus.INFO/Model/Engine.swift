@@ -20,7 +20,7 @@ class Engine: ObservableObject {
     let countriesPageMainTextSeparatorFrom:String = "label-counter"
     let countriesPageMainTextSeparatorTo:String = "<divclass=\"col"
     
-    func getCasesDeathsRecoveredData(countryName:String)->[String:(String,String,String)]{
+    func getCasesDeathsRecoveredData(countryName:String)->[String:(String,String,String, String, String)]{
         let countriesAndLinks = getCountriesAndLinks(
             globalCountriesLink: globalCountriesLink,
             mainPageTextSeparatorFrom: mainPageTextSeparatorFrom,
@@ -60,11 +60,11 @@ class Engine: ObservableObject {
         globalCountriesLink:String,
         countriesPageMainTextSeparatorFrom:String,
         countriesPageMainTextSeparatorTo:String
-    ) -> [String:(String,String,String)]{
+    ) -> [String:(String,String,String, String, String)]{
         let specificCountryLink:String = globalCountriesLink.replacingOccurrences(of: "#countries", with: "\(countryesAndLinks[spicificCountryName]!)")
         
-        let testingUrl = URL(string: specificCountryLink)!
-        let contentOfHtml = try! String(contentsOf: testingUrl, encoding: .utf8)
+        let scecificCountryUrl = URL(string: specificCountryLink)!
+        let contentOfHtml = try! String(contentsOf: scecificCountryUrl, encoding: .utf8)
         let htmlUnspacedText =  contentOfHtml.filter { !$0.isNewline && !$0.isWhitespace }
         
         let countryPageMainText = htmlUnspacedText.slices(from: countriesPageMainTextSeparatorFrom, to: countriesPageMainTextSeparatorTo)
@@ -72,10 +72,27 @@ class Engine: ObservableObject {
         let cases = String(countryPageMainText[0]).slices(from: "<h1>CoronavirusCases:</h1>", to: "</span>")
         let deaths = String(countryPageMainText[0]).slices(from: "<h1>Deaths:</h1>", to: "</span>")
         let recovered = String(countryPageMainText[0]).slices(from: "<h1>Recovered:</h1>", to: "</span>")
-        let casesFiltered = String(cases[0].split(separator: ">").last!)
-        let deathsFiltered = String(deaths[0].split(separator: ">").last!)
-        let recoveredFiltered = String(recovered[0].split(separator: ">").last!)
-        return [spicificCountryName:(casesFiltered, deathsFiltered, recoveredFiltered)]
+        
+        var casesFiltered:String = "0"
+        var deathsFiltered:String = "0"
+        var recoveredFiltered:String = "0"
+        
+        if (!cases.isEmpty){casesFiltered = String(cases[0].split(separator: ">").last!)}
+        if (!deaths.isEmpty){deathsFiltered = String(deaths[0].split(separator: ">").last!)}
+        if (!recovered.isEmpty){recoveredFiltered = String(recovered[0].split(separator: ">").last!)}
+        
+        let lastNewsText = htmlUnspacedText.slices(from: "LatestNews", to: "in<strong>")
+        
+        let newCases = String(lastNewsText[0]).slices(from: "<strong>", to: "newcases")
+        let newDeaths = String(lastNewsText[0]).slices(from: "and<strong>", to: "newdeaths")
+        
+        var newCasesFiltered = "0"
+        var newDeathsFiltered = "0"
+        
+        if (!newCases.isEmpty){newCasesFiltered = String(newCases[0])}
+        if (!newDeaths.isEmpty){newDeathsFiltered = String(newDeaths[0])}
+        
+        return [spicificCountryName:(casesFiltered, deathsFiltered, recoveredFiltered, newCasesFiltered, newDeathsFiltered)]
         
     }
     
