@@ -8,3 +8,4 @@ It's iOS app repo that consist application source code of Coronavirus.INFO app.
 > ![screenshot](https://github.com/EdwardSokolovsky/Coronavirus.INFO/blob/master/screenshotes/s3.PNG)
 > ![screenshot](https://github.com/EdwardSokolovsky/Coronavirus.INFO/blob/master/screenshotes/s4.PNG)
 > ![screenshot](https://github.com/EdwardSokolovsky/Coronavirus.INFO/blob/master/screenshotes/s5.PNG)
+> ![screenshot](https://github.com/EdwardSokolovsky/Coronavirus.INFO/blob/master/screenshotes/s6.PNG)
